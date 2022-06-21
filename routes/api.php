@@ -7,6 +7,7 @@ use App\Http\Controllers\Authcontroller;
 use App\Http\Controllers\UploadController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\ProductController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -18,14 +19,20 @@ use App\Http\Controllers\CartController;
 |
 */
 
+//user login & registration page
 Route::post('/register',[App\Http\Controllers\Authcontroller::class, 'register']);
 Route::post('/login',[App\Http\Controllers\Authcontroller::class, 'login']);
 
+//public access
+Route::get('/get_all_products',[App\Http\Controllers\ProductController::class, 'getAllProduct']);
+
+//cajo
 Route::get('/details',[App\Http\Controllers\DetailsController::class, 'getAllDetails']);
 Route::get('/details/{id}',[App\Http\Controllers\DetailsController::class, 'getDetail']);
 Route::get('/details/search/{name}',[App\Http\Controllers\DetailsController::class, 'searchDetail']);
 Route::get('/getAllImage', [App\Http\Controllers\UploadController::class, 'getImages']);
 
+// authenticateed user module
 Route::group(['middleware' => ['auth:sanctum'], 'prefix' => 'user'], function () {
 
     Route::post('/createdetails',[App\Http\Controllers\DetailsController::class, 'createDetail']);
