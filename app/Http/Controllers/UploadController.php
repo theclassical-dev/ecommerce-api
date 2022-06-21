@@ -53,12 +53,12 @@ class UploadController extends Controller
        
     }
 
-    public function dUpload(Request $request){
+    public function dUpload($id){
 
             $request->validate([
                 'id' => 'required',
             ]);
-            $del = Property_Pics::find($request->id);
+            $del = Upload::find($id);
             $img = explode('|', $del->image);
             if($del){
                 foreach($img as $imgs){
