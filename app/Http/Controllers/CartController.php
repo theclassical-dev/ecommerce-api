@@ -44,4 +44,24 @@ class CartController extends Controller
         ]);
 
     }
+
+    public function update_cart(Request $request, $id){
+
+        $cart  = auth()->user()->cart()->find($id);
+        
+        if($cart){
+
+            $cart->update([
+                'product_id'=>$request->get('product_id'),
+                'product_name'=>$request->get('product_name'),
+                'product_price'=>$request->get('product_price'),
+                'product_image'=>$request->get('product_image'),
+                'product_image_url'=>$request->get('product_image_url'),
+            ]);
+
+            return response()->json(['data' => $cart]);
+        }
+
+            return response()->json(['message' => 'failed']);
+    }
 }

@@ -48,11 +48,13 @@ Route::group(['middleware' => ['auth:sanctum'], 'prefix' => 'user'], function ()
     
     //add cart
     Route::post('/add_to_cart',[App\Http\Controllers\CartController::class, 'add_cart']);
+    //update cart
+    Route::put('/edit_cart/{id}',[App\Http\Controllers\CartController::class, 'update_cart']);
     //get added cart by authenticated user
     Route::get('/get_all_cart',[App\Http\Controllers\UserController::class, 'getCart']);
     //add products
     Route::post('/add_product',[App\Http\Controllers\ProductController::class, 'addProduct']);
-
+    
 
 
 });
