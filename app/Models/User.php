@@ -52,4 +52,8 @@ class User extends Authenticatable
     public function upload() {
         return $this->hasMany(Upload::class);
     }
+
+    public function cart(){
+        return $this->hasMany(Cart::class);
+    }
 }

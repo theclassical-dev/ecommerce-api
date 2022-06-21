@@ -12,4 +12,8 @@ class Cart extends Model
     protected $fillable = [
         'uuid','user_name','product_id','product_name','product_price','product_image','product_image_url'
     ];
+
+    public function user(){
+        return $this->belongsTo(User::class, 'user_id', 'user_id');
+    }
 }
