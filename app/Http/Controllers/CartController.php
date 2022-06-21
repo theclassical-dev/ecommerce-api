@@ -14,8 +14,6 @@ class CartController extends Controller
     public function add_cart(Request $request){
 
         $request->validate([
-            'uuid'=>'required',
-            'user_name'=>'required',
             'product_id'=>'required',
             'product_name'=>'required',
             'product_price'=>'required',
@@ -23,14 +21,15 @@ class CartController extends Controller
             'product_image_url'=>'required',
         ]);
 
-        $name = auth()->user()->firstName. ' '. auth()->user()->lastName.
+        $name = auth()->user()->firstName. ' '. auth()->user()->lastName;
         $cart = Cart::create([
             'uuid'=> auth()->user()->uuid,
             'user_name'=> $name,
             'product_id'=>$request->input('product_id'),
             'product_name'=>$request->input('product_name'),
+            'product_price'=>$request->input('product_price'),
             'product_image'=>$request->input('product_image'),
-        'product_image_url'=>$request->input('product_image_url'),
+            'product_image_url'=>$request->input('product_image_url'),
         ]);
 
         if($cart){
