@@ -19,7 +19,11 @@ class Authcontroller extends Controller
             'password' => 'required|string|confirmed'
         ]);
 
+        $c = random_bytes(3);
+        $uuid = strtoupper((bin2hex($c)));
+
         $user = User::create([
+            'uuid' => $uuid,
             'firstName' => $data['firstName'],
             'lastName' => $data['lastName'],
             'userName' => $data['userName'],

@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(1)->create();
 
         DB::table('users')->insert([
+            'uuid' => Str::random(6),
             'firstName' => 'test',
             'lastName' => 'test',
             'userName' => 'test',

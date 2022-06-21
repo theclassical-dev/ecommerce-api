@@ -15,6 +15,7 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
+            $table->string('uuid');
             $table->string('firstName');
             $table->string('lastName');
             $table->string('userName');
@@ -23,8 +24,8 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
-            $table->date('updated_at')->format('WAT');
-            $table->date('created_at')->format('WAT');;
+            $table->datetime('updated_at')->format('WAT');
+            $table->datetime('created_at')->format('WAT');
         });
     }
 

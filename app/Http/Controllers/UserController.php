@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Storage;
 use Auth;
 use File;
 use App\Models\User;
+use App\Models\Cart;
 use App\Models\Upload;
 
 class UserController extends Controller
@@ -69,4 +70,6 @@ class UserController extends Controller
             }
         }
     }
+
+   
 }

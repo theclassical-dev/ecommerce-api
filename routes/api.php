@@ -6,6 +6,7 @@ use App\Http\Controllers\DetailsController;
 use App\Http\Controllers\Authcontroller;
 use App\Http\Controllers\UploadController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CartController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -38,5 +39,8 @@ Route::group(['middleware' => ['auth:sanctum'], 'prefix' => 'user'], function ()
     Route::delete('/deleteupload/{id}', [App\Http\Controllers\UserController::class, 'dUpload']);
     Route::put('/updateupload/{id}', [App\Http\Controllers\UserController::class, 'updateUpload']);
     
+    //add cart
+    Route::post('/add_to_cart',[App\Http\Controllers\CartController::class, 'add_cart']);
+
 
 });
