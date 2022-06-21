@@ -22,8 +22,8 @@ class CreateCartsTable extends Migration
             $table->string('product_price');
             $table->string('product_image');
             $table->string('product_image_url');
-            $table->timestamps('updated_at')->useCurrentOnUpdate();
-            $table->timestamps('created_at')->useCurrent();
+            $table->date('updated_at')->format('WAT');
+            $table->date('created_at')->format('WAT');
         });
     }
 
