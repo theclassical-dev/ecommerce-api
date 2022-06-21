@@ -37,6 +37,7 @@ class ProductController extends Controller
             'discription'=>'required',
             'quantity'=>'required',
             'status'=>'required',
+            'category'=>'required',
             'avater'=>'required',
             // 'images'=>'required',
         ]);
@@ -73,13 +74,14 @@ class ProductController extends Controller
             'discription' => $request->input('discription'),
             'quantity' => $request->input('quantity'),
             'status' => $request->input('status'),
+            'category' => $request->input('category'),
             'avater' => $file,
             'images' =>implode(',', $imgName)
         ]);
 
         if($product){
 
-            return respons()->json([
+            return response()->json([
                 'message' => 'Product Successfully Added'
             ]);
         }
