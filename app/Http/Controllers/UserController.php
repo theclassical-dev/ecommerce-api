@@ -71,5 +71,20 @@ class UserController extends Controller
         }
     }
 
-   
+   public function getCart(Request $request){
+    
+        $cart = auth()->user()->cart;
+
+        if(!$cart->isEmpty()){
+
+            return response()->json([
+                'data' => $cart
+            ]);
+        }
+
+        return response()->json([
+            'message'=>'cart is empty'
+        ]);
+
+   }
 }
