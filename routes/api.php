@@ -33,7 +33,7 @@ Route::get('/details/search/{name}',[App\Http\Controllers\DetailsController::cla
 Route::get('/getAllImage', [App\Http\Controllers\UploadController::class, 'getImages']);
 
 // authenticateed user module
-Route::group(['middleware' => ['auth:sanctum'], 'prefix' => 'user'], function () {
+Route::group(['middleware' => ['auth:user'], 'prefix' => 'user'], function () {
 
     Route::post('/createdetails',[App\Http\Controllers\DetailsController::class, 'createDetail']);
     Route::put('/updatedetails/{id}',[App\Http\Controllers\DetailsController::class, 'updateDetail']);
