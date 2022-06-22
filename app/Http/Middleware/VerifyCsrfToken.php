@@ -13,6 +13,6 @@ class VerifyCsrfToken extends Middleware
      */
     protected $except = [
         //
-        'https://ecommerces-api.herokuapp.com/*'
+        'https://ecommerces-api.herokuapp.com/api/*'
     ];
 }
