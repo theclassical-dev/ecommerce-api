@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Middleware\VerifyCsrfToken;
+// use App\Http\Middleware\VerifyCsrfToken;
 
 use App\Http\Controllers\DetailsController;
 use App\Http\Controllers\Authcontroller;
