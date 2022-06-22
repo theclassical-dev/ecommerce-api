@@ -16,12 +16,25 @@ class ProductController extends Controller
 
         $products = Product::all();
 
+        // if(!$products->isEmpty()){
+        //     return response()->json([
+        //         'data' => $products
+        //     ]);
+        // }
+
+        $results = [];
         if(!$products->isEmpty()){
+            // foreach($products as $p){
+            //     $p->image = env('App_URL') .'/storage/productAvater/'.$p->avater;
+
+            //     $p->Storage::disk('public')->url('productAvater/')
+            //     array_push($results, $p);
+            // }
             return response()->json([
-                'data' => $products
+                // 'data' => $results
+                'data' => $product
             ]);
         }
-
         return response()->json([
             'message' => 'no products is avaliable'
         ]);

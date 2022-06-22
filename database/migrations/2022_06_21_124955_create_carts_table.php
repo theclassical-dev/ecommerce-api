@@ -22,7 +22,7 @@ class CreateCartsTable extends Migration
             $table->string('product_name');
             $table->string('product_price');
             $table->string('quantity')->dafault(0);
-            $table->string('total');
+            $table->double('total');
             $table->string('product_image');
             $table->string('product_image_url');
             $table->datetime('updated_at')->format('WAT');
