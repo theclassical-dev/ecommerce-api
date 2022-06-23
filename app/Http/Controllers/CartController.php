@@ -73,4 +73,8 @@ class CartController extends Controller
 
             return response()->json(['message' => 'failed']);
     }
+
+    public function delet_cart($id){
+        
+    }
 }
