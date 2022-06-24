@@ -38,6 +38,7 @@ Route::group(['prefix' => 'boss'], function () {
 //public access
 Route::get('/get_all_products',[App\Http\Controllers\ProductController::class, 'getAllProduct']);
 Route::get('/get_all_category',[App\Http\Controllers\CategoryController::class, 'get_all_category']);
+//get product review
 Route::get('/get_product_review/{id}',[App\Http\Controllers\ReviewController::class, 'getReview']);
 
 //cajo
@@ -69,6 +70,10 @@ Route::group(['middleware' => ['auth:user'], 'prefix' => 'v1/user'], function ()
     Route::delete('/delete_cart/{id}',[App\Http\Controllers\CartController::class, 'delete_cart']);
     //get added cart by authenticated user
     Route::get('/get_all_cart',[App\Http\Controllers\UserController::class, 'getCart']);
+    //add review to product
+    Route::post('/add_review',[App\Http\Controllers\ReviewController::class, 'addReview']);
+    //delete review
+    Route::delete('/delete_review/{id}',[App\Http\Controllers\ReviewController::class, 'deleteReview']);
 
 });
 
