@@ -32,7 +32,7 @@ class ProductController extends Controller
             // }
             return response()->json([
                 // 'data' => $results
-                'data' => $product
+                'data' => $products
             ]);
         }
         return response()->json([
@@ -44,7 +44,7 @@ class ProductController extends Controller
     public function addProduct(Request $request){
 
         $request->validate([
-            'name'=>'required',
+            'name'=>'required|unique:products,name',
             'price'=>'required',
             'discount'=>'required',
             'discription'=>'required',

@@ -11,6 +11,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\AdminController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -25,6 +26,13 @@ use App\Http\Controllers\CategoryController;
 //user login & registration page
 Route::post('/register',[App\Http\Controllers\Authcontroller::class, 'register']);
 Route::post('/login',[App\Http\Controllers\Authcontroller::class, 'login']);
+
+//
+Route::group(['prefix' => 'boss'], function () {
+    Route::post('/login',[App\Http\Controllers\AdminController::class, 'login']);
+    Route::post('/register',[App\Http\Controllers\AdminController::class, 'register']);
+
+});
 
 //public access
 Route::get('/get_all_products',[App\Http\Controllers\ProductController::class, 'getAllProduct']);

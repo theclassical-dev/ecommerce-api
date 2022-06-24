@@ -16,7 +16,11 @@ class AdminController extends Controller
             'password' => 'required|string|'
         ]);
 
+        $c = random_bytes(2);
+        $uuid = 'AD'.strtoupper((bin2hex($c)));
+
         $admin = Admin::create([
+            'uuid' => $uuid,
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password'])
