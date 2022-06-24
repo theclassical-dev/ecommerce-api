@@ -12,6 +12,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ReviewController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -27,7 +28,7 @@ use App\Http\Controllers\AdminController;
 Route::post('/register',[App\Http\Controllers\Authcontroller::class, 'register']);
 Route::post('/login',[App\Http\Controllers\Authcontroller::class, 'login']);
 
-//
+//admin
 Route::group(['prefix' => 'boss'], function () {
     Route::post('/login',[App\Http\Controllers\AdminController::class, 'login']);
     Route::post('/register',[App\Http\Controllers\AdminController::class, 'register']);
@@ -37,6 +38,7 @@ Route::group(['prefix' => 'boss'], function () {
 //public access
 Route::get('/get_all_products',[App\Http\Controllers\ProductController::class, 'getAllProduct']);
 Route::get('/get_all_category',[App\Http\Controllers\CategoryController::class, 'get_all_category']);
+Route::get('/get_product_review/{id}',[App\Http\Controllers\ReviewController::class, 'getReview']);
 
 //cajo
 Route::get('/details',[App\Http\Controllers\DetailsController::class, 'getAllDetails']);
