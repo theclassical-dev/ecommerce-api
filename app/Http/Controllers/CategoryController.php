@@ -22,7 +22,7 @@ class CategoryController extends Controller
 
     public function addCategory(Request $request){
 
-        $request->validate(['name']);
+        $request->validate(['name'=>'required|unique:categories,name']);
 
         $category = Category::create(['name' => $request->input('name')]);
         if($category){
@@ -36,14 +36,29 @@ class CategoryController extends Controller
     }
 
     public function updateCategory(Request $request, $id){
-        $request->validate(['name']);
+
+        $request->validate(['name'=>'required']);
 
         $category = Category::find($id);
         if($category){
+
+            $category->update(['name'=>$request->get('name')]);
             return response()->json([
                 'message' => 'successfully updated',
                 'data' => $category
             ]);
         }
+    }
+
+    public function deleteCategory($id){
+
+        $category = Category::find($id);
+        if($category){
+            $category->delete($category);
+            return response()->json(['message' => 'Category Successfully Deleted']);
+        }
+
+            return response()->json(['message' => 'failed']);
+
     }
 }

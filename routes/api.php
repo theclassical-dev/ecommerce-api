@@ -71,10 +71,16 @@ Route::group(['middleware' => ['auth:user'], 'prefix' => 'v1/user'], function ()
 });
 
 Route::group(['middleware' => ['auth:admin'], 'prefix' => 'v1/admin'], function () {
-     //add products
-     Route::post('/add_product',[App\Http\Controllers\ProductController::class, 'addProduct']);
-     //get all catergory
-     Route::get('/get_all_category',[App\Http\Controllers\CategoryController::class, 'get_all_category']);
-     //add category
-     Route::post('/add_category',[App\Http\Controllers\CategoryController::class, 'addCategory']);
+    //add products
+    Route::post('/add_product',[App\Http\Controllers\ProductController::class, 'addProduct']);
+    //get all catergory
+    Route::get('/get_all_category',[App\Http\Controllers\CategoryController::class, 'get_all_category']);
+    //add category
+    Route::post('/add_category',[App\Http\Controllers\CategoryController::class, 'addCategory']);
+    //update category
+    Route::put('/edit_category/{id}',[App\Http\Controllers\CategoryController::class, 'updateCategory']);
+    //delete category
+    Route::delete('/delete_category/{id}',[App\Http\Controllers\CategoryController::class, 'deleteCategory']);
+
+
 });
