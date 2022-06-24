@@ -44,12 +44,13 @@ Route::group(['middleware' => ['auth:user'], 'prefix' => 'v1/user'], function ()
     // Route::delete('/details/delete/{id}',[App\Http\Controllers\DetailsController::class, 'deleteDetail']);
     // Route::delete('/details/deleteall',[App\Http\Controllers\DetailsController::class, 'deleteAll']);
     Route::post('/upload', [App\Http\Controllers\UploadController::class, 'upload']);
-    Route::post('/logout',[App\Http\Controllers\Authcontroller::class, 'logout']);
     Route::get('/upload', [App\Http\Controllers\UserController::class, 'index']);
     Route::get('/details', [App\Http\Controllers\UserController::class, 'getDetails']);
     Route::delete('/deleteupload/{id}', [App\Http\Controllers\UserController::class, 'dUpload']);
     Route::put('/updateupload/{id}', [App\Http\Controllers\UserController::class, 'updateUpload']);
     
+    //logout
+    Route::post('/logout',[App\Http\Controllers\Authcontroller::class, 'logout']);
     //add cart
     Route::post('/add_to_cart',[App\Http\Controllers\CartController::class, 'add_cart']);
     //update cart
