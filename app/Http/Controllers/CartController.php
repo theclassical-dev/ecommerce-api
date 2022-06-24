@@ -74,7 +74,16 @@ class CartController extends Controller
             return response()->json(['message' => 'failed']);
     }
 
-    public function delet_cart($id){
-        
+    public function delete_cart($id){
+
+        $cart = auth()->user()->cart()->find($id);
+
+        if($cart){
+
+            $cart->delete($cart);
+            return response()->json(['message' => 'cart removed']);
+        }
+
+            return response()->json(['message' => 'The cart is not Avaliable ']);
     }
 }

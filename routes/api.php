@@ -52,11 +52,13 @@ Route::group(['middleware' => ['auth:user'], 'prefix' => 'user'], function () {
     Route::post('/add_to_cart',[App\Http\Controllers\CartController::class, 'add_cart']);
     //update cart
     Route::put('/edit_cart/{id}',[App\Http\Controllers\CartController::class, 'update_cart']);
+    //delete cart
+    Route::delete('/delete_cart/{id}',[App\Http\Controllers\CartController::class, 'delete_cart']);
     //get added cart by authenticated user
     Route::get('/get_all_cart',[App\Http\Controllers\UserController::class, 'getCart']);
     //add products
     Route::post('/add_product',[App\Http\Controllers\ProductController::class, 'addProduct']);
-    
+    //
 
 
 });
