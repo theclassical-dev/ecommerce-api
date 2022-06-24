@@ -69,7 +69,10 @@ class CartController extends Controller
                 'product_image_url'=>$request->get('product_image_url'),
             ]);
 
-            return response()->json(['data' => $cart]);
+            return response()->json([
+                'message' => 'successfully updated',
+                'data' => $cart
+            ]);
         }
 
             return response()->json(['message' => 'record not found']);

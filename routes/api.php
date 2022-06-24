@@ -76,5 +76,5 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'v1/admin'], function 
      //get all catergory
      Route::get('/get_all_category',[App\Http\Controllers\CategoryController::class, 'get_all_category']);
      //add category
-     Route::post('/get_all_category',[App\Http\Controllers\CategoryController::class, 'get_all_category']);
+     Route::post('/add_category',[App\Http\Controllers\CategoryController::class, 'addCategory']);
 });
