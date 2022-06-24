@@ -37,7 +37,7 @@ Route::get('/details/search/{name}',[App\Http\Controllers\DetailsController::cla
 Route::get('/getAllImage', [App\Http\Controllers\UploadController::class, 'getImages']);
 
 // authenticateed user module
-Route::group(['middleware' => ['auth:user'], 'prefix' => 'user'], function () {
+Route::group(['middleware' => ['auth:user'], 'prefix' => 'v1/user'], function () {
 
     Route::post('/createdetails',[App\Http\Controllers\DetailsController::class, 'createDetail']);
     Route::put('/updatedetails/{id}',[App\Http\Controllers\DetailsController::class, 'updateDetail']);
@@ -58,11 +58,14 @@ Route::group(['middleware' => ['auth:user'], 'prefix' => 'user'], function () {
     Route::delete('/delete_cart/{id}',[App\Http\Controllers\CartController::class, 'delete_cart']);
     //get added cart by authenticated user
     Route::get('/get_all_cart',[App\Http\Controllers\UserController::class, 'getCart']);
-    //add products
-    Route::post('/add_product',[App\Http\Controllers\ProductController::class, 'addProduct']);
-    //catergory
-    Route::post('/get_all_category',[App\Http\Controllers\CategoryController::class, 'get_all_category']);
 
+});
 
-
+Route::group(['middleware' => ['auth:admin'], 'prefix' => 'v1/admin'], function () {
+     //add products
+     Route::post('/add_product',[App\Http\Controllers\ProductController::class, 'addProduct']);
+     //get all catergory
+     Route::get('/get_all_category',[App\Http\Controllers\CategoryController::class, 'get_all_category']);
+     //add category
+     Route::post('/get_all_category',[App\Http\Controllers\CategoryController::class, 'get_all_category']);
 });

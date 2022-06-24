@@ -19,4 +19,16 @@ class CategoryController extends Controller
 
 
     }
+
+    public function add_category(Request $request){
+
+        $request->validate(['name']);
+
+        $category = Category::create(['name' => $request->input('name')]);
+        if($category){
+            return response()->json(['message' => 'category successfully added']);
+        }
+            return response()->json(['message' => 'failed']);
+
+    }
 }
