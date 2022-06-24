@@ -10,6 +10,7 @@ use App\Http\Controllers\UploadController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CategoryController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -27,6 +28,7 @@ Route::post('/login',[App\Http\Controllers\Authcontroller::class, 'login']);
 
 //public access
 Route::get('/get_all_products',[App\Http\Controllers\ProductController::class, 'getAllProduct']);
+Route::get('/get_all_category',[App\Http\Controllers\CategoryController::class, 'get_all_category']);
 
 //cajo
 Route::get('/details',[App\Http\Controllers\DetailsController::class, 'getAllDetails']);
@@ -58,7 +60,9 @@ Route::group(['middleware' => ['auth:user'], 'prefix' => 'user'], function () {
     Route::get('/get_all_cart',[App\Http\Controllers\UserController::class, 'getCart']);
     //add products
     Route::post('/add_product',[App\Http\Controllers\ProductController::class, 'addProduct']);
-    //
+    //catergory
+    Route::post('/get_all_category',[App\Http\Controllers\CategoryController::class, 'get_all_category']);
+
 
 
 });
