@@ -26,6 +26,7 @@ class CartController extends Controller
         $total = $request->input('product_price') * $request->input('quantity');
 
         $cart = Cart::create([
+            'user_id' => auth()->user()->id,
             'uuid'=> auth()->user()->uuid,
             'user_name'=> $name,
             'product_id'=>$request->input('product_id'),
@@ -39,7 +40,7 @@ class CartController extends Controller
 
         if($cart){
             return response()->json([
-                'message' => 'Prooduct Successfully Added To Cart' ,
+                'message' => 'Product Successfully Added To Cart' ,
                 'data' => $cart  
             ]);
         }
@@ -71,7 +72,7 @@ class CartController extends Controller
             return response()->json(['data' => $cart]);
         }
 
-            return response()->json(['message' => 'failed']);
+            return response()->json(['message' => 'record not found']);
     }
 
     public function delete_cart($id){
