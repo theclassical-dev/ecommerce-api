@@ -115,4 +115,21 @@ class ProductController extends Controller
             ];
     }
 
+    public function updateProduct(Request $request, $id){
+
+        $product = Product::find($id);
+
+        if($product){
+
+        }
+    }
+
+    public function deleteProduct($id){
+        $product = Product::find($id);
+
+        if($product){
+            
+        }
+    }
+
 }
