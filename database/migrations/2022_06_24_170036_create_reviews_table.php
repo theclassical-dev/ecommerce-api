@@ -15,6 +15,12 @@ class CreateReviewsTable extends Migration
     {
         Schema::create('reviews', function (Blueprint $table) {
             $table->id();
+            $table->string('user_id');
+            $table->string('product_id');
+            $table->string('ticket');
+            $table->string('name');
+            $table->text('description');
+            $table->string('date');
             $table->timestamps();
         });
     }
