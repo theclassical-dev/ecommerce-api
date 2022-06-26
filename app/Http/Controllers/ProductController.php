@@ -23,20 +23,34 @@ class ProductController extends Controller
         // }
 
         $results = [];
-        if(!$products->isEmpty()){
-            // foreach($products as $p){
-            //     $p->image = env('App_URL') .'/storage/productAvater/'.$p->avater;
+        // $ds = explode('|', $products->images);
+        // foreach($ds as $d){
 
-            //     $p->Storage::disk('public')->url('productAvater/')
-            //     array_push($results, $p);
-            // }
+        // }
+
+
+
+
+
+        if(!$products->isEmpty()){
+            foreach($products as $p){
+                $p->images = env('App_URL') .'/storage/productImages/'.$p->images;
+
+                // $p->Storage::disk('public')->url('productAvater/');
+                array_push($results, $p);
+                // $ds = explode('|', $d->pictures ?? '');
+
+            }
+            
             return response()->json([
                 // 'data' => $results
-                'data' => $products
+                'data' => [
+                    'images'=> implode(',', $results)
+                ]
             ]);
         }
         return response()->json([
-            'message' => 'no products is avaliable'
+            'message' => 'no products is available'
         ]);
 
     }

@@ -15,7 +15,7 @@ class CategoryController extends Controller
         if(!$category->isEmpty()){
             return response()->json(['data' => $category]);
         }
-            return response()->json(['message' => 'no category is avaliable']);
+            return response()->json(['message' => 'no category is available']);
 
 
     }

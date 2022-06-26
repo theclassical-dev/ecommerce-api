@@ -19,7 +19,7 @@ class ReviewController extends Controller
 
             return response()->json(['data' => $review]);
         }
-            return response()->json(['message' => 'no review avaliable']);
+            return response()->json(['message' => 'no review available']);
 
     }
 
@@ -61,7 +61,7 @@ class ReviewController extends Controller
             return response()->json(['message' => 'Review Successfully Deleted']);
         }
 
-        return response()->json(['message' => 'Not Avaliable']);
+        return response()->json(['message' => 'Not available']);
 
     }
 }
