@@ -9,20 +9,40 @@ use Auth;
 use File;
 use App\Models\Product;
 use App\Models\User;
+use DB;
 
 class ProductController extends Controller
 {
     public function getAllProduct(){
 
-        $products = Product::all();
+        // $products = Product::all()->first();
+        $gals = DB::select("SELECT * FROM products ORDER BY id");
 
-        // if(!$products->isEmpty()){
+        $results = [];
+    
+        foreach($gals as $gal){
+            // $gal->avater = env('APP_URL') . '/storage/productAvater/' . $gal->avater;
+            $gal->avater = Storage::disk('public')->url('productAvater/'.$gal->avater);
+            array_push($results, $gal);
+        } 
+        return response()->json($results);
+        // foreach($products as $p){
+
+        // $imgRes = [
+        //     "image_url" => Storage::disk('public')->url('productAvater/'.$p->avater),
+        //     // "mime" => $p->avater->getClientMimeType()
+        // ];
+
+    // }
+        // if($products){
         //     return response()->json([
-        //         'data' => $products
+        //         'data' => $products,
+        //         "image_url" => Storage::disk('public')->url('productAvater/'.$products->avater),
+
         //     ]);
         // }
 
-        $results = [];
+        // $results = [];
         // $ds = explode('|', $products->images);
         // foreach($ds as $d){
 
@@ -32,26 +52,26 @@ class ProductController extends Controller
 
 
 
-        if(!$products->isEmpty()){
-            foreach($products as $p){
-                $p->images = env('App_URL') .'/storage/productImages/'.$p->images;
+        // if(!$products->isEmpty()){
+        //     foreach($products as $p){
+        //         $p->images = env('App_URL') .'/storage/productImages/'.$p->images;
 
-                // $p->Storage::disk('public')->url('productAvater/');
-                array_push($results, $p);
-                // $ds = explode('|', $d->pictures ?? '');
+        //         // $p->Storage::disk('public')->url('productAvater/');
+        //         array_push($results, $p);
+        //         // $ds = explode('|', $d->pictures ?? '');
 
-            }
+        //     }
             
-            return response()->json([
-                // 'data' => $results
-                'data' => [
-                    'images'=> implode(',', $results)
-                ]
-            ]);
-        }
-        return response()->json([
-            'message' => 'no products is available'
-        ]);
+        //     return response()->json([
+        //         // 'data' => $results
+        //         'data' => [
+        //             'images'=> implode(',', $results)
+        //         ]
+        //     ]);
+        // }
+        // return response()->json([
+        //     'message' => 'no products is available'
+        // ]);
 
     }
 
