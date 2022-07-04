@@ -151,10 +151,6 @@ class ProductController extends Controller
 
     public function updateProduct(Request $request, $id){
 
-        // $request->validate([
-        //     'id' => 'required',
-        // ]);
-
         $product = Product::find($id);
 
         $img = $request->file('avater');
@@ -193,15 +189,22 @@ class ProductController extends Controller
 
         }
 
-        return response()->json(['error' =>'Product Updated Successfully']);
+        return response()->json(['message' =>'Error updating product...']);
     }
 
-    public function deleteProduct($id){
+    public function deleteProduct(Request $request, $id){
+
         $product = Product::find($id);
 
         if($product){
             
+            Storage::delete('public/productAvater/'. $product->avater);
+            $product->delete($request->all());
+
+            return response()->json(['message' =>'Product deleted successfully'], 200);
         }
+
+            return response()->json(['message' =>'Error deleting product']);
     }
 
 }
