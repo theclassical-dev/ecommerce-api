@@ -64,8 +64,7 @@ Route::group(['middleware' => ['auth:user'], 'prefix' => 'v1/user'], function ()
     Route::delete('/deleteupload/{id}', [App\Http\Controllers\UserController::class, 'dUpload']);
     Route::put('/updateupload/{id}', [App\Http\Controllers\UserController::class, 'updateUpload']);
     
-    //logout
-    Route::post('/logout',[App\Http\Controllers\Authcontroller::class, 'logout']);
+  
     //add cart
     Route::post('/add_to_cart',[App\Http\Controllers\CartController::class, 'add_cart']);
     //update cart
@@ -78,6 +77,8 @@ Route::group(['middleware' => ['auth:user'], 'prefix' => 'v1/user'], function ()
     Route::post('/add_review',[App\Http\Controllers\ReviewController::class, 'addReview']);
     //delete review
     Route::delete('/delete_review/{id}',[App\Http\Controllers\ReviewController::class, 'deleteReview']);
+    //logout
+    Route::post('/logout',[App\Http\Controllers\Authcontroller::class, 'logout']);
 
 });
 
@@ -98,5 +99,7 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'v1/admin'], function 
     Route::delete('/delete_category/{id}',[App\Http\Controllers\CategoryController::class, 'deleteCategory']);
     //get all users
     Route::get('/get_all_users',[App\Http\Controllers\AdminController::class, 'getUser']);
+    //logout
+    Route::get('/logout',[App\Http\Controllers\AdminController::class, 'logout']);
 
 });
