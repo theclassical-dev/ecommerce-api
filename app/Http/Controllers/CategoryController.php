@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Models\Category;
+use App\Http\Resources\CategoryResource;
 
 class CategoryController extends Controller
 {
@@ -13,7 +14,7 @@ class CategoryController extends Controller
         $category = Category::all();
 
         if(!$category->isEmpty()){
-            return response()->json(['data' => $category]);
+            return CategoryResource::collection($category);
         }
             return response()->json(['message' => 'no category is available']);
 

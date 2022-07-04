@@ -23,23 +23,27 @@ use App\Http\Controllers\ReviewController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+//public functions
 
-//user login & registration page
-Route::post('/register',[App\Http\Controllers\Authcontroller::class, 'register']);
-Route::post('/login',[App\Http\Controllers\Authcontroller::class, 'login']);
+Route::group(['prefix' =>'v1/public'], function(){
 
+    //user login & registration page
+    Route::post('/register',[App\Http\Controllers\Authcontroller::class, 'register']);
+    Route::post('/login',[App\Http\Controllers\Authcontroller::class, 'login']);
+
+    //public access
+    Route::get('/get_all_products',[App\Http\Controllers\ProductController::class, 'getAllProduct']);
+    Route::get('/get_all_category',[App\Http\Controllers\CategoryController::class, 'get_all_category']);
+    //get product review
+    Route::get('/get_product_review/{id}',[App\Http\Controllers\ReviewController::class, 'getReview']);
+    
+});
 //admin
-Route::group(['prefix' => 'boss'], function () {
+Route::group(['prefix' => 'v1/boss'], function () {
     Route::post('/login',[App\Http\Controllers\AdminController::class, 'login']);
     Route::post('/register',[App\Http\Controllers\AdminController::class, 'register']);
 
 });
-
-//public access
-Route::get('/get_all_products',[App\Http\Controllers\ProductController::class, 'getAllProduct']);
-Route::get('/get_all_category',[App\Http\Controllers\CategoryController::class, 'get_all_category']);
-//get product review
-Route::get('/get_product_review/{id}',[App\Http\Controllers\ReviewController::class, 'getReview']);
 
 //cajo
 Route::get('/details',[App\Http\Controllers\DetailsController::class, 'getAllDetails']);
