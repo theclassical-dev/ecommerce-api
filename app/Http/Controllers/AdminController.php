@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Admin;
+use App\Models\User;
+use App\Http\Resources\CategoryResource;
 
 class AdminController extends Controller
 {
@@ -68,7 +70,12 @@ class AdminController extends Controller
         ];
     }
 
-    public function get(Request $request){
+    public function getAdmin(Request $request){
         return auth()->guard('admin')->user()->email;
+    }
+
+    public function getUser(Request $request){
+
+        return UserResource::collection(User::all());
     }
 }
