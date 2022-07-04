@@ -85,7 +85,7 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'v1/admin'], function 
     //add products
     Route::post('/add_product',[App\Http\Controllers\ProductController::class, 'addProduct']);
     //edit products
-    Route::post('/edit_product/{id}',[App\Http\Controllers\ProductController::class, 'updateProduct']);
+    Route::put('/edit_product/{id}',[App\Http\Controllers\ProductController::class, 'updateProduct']);
     //get all catergory
     Route::get('/get_all_category',[App\Http\Controllers\CategoryController::class, 'get_all_category']);
     //add category

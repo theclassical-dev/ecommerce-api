@@ -151,9 +151,9 @@ class ProductController extends Controller
 
     public function updateProduct(Request $request, $id){
 
-        $request->validate([
-            'id' => 'required',
-        ]);
+        // $request->validate([
+        //     'id' => 'required',
+        // ]);
 
         $product = Product::find($id);
 
