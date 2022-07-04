@@ -96,6 +96,7 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'v1/admin'], function 
     Route::put('/edit_category/{id}',[App\Http\Controllers\CategoryController::class, 'updateCategory']);
     //delete category
     Route::delete('/delete_category/{id}',[App\Http\Controllers\CategoryController::class, 'deleteCategory']);
-
+    //get all users
+    Route::get('/get_all_users',[App\Http\Controllers\AdminController::class, 'getUser']);
 
 });

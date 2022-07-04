@@ -7,7 +7,7 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Admin;
 use App\Models\User;
-use App\Http\Resources\CategoryResource;
+use App\Http\Resources\UserResource;
 
 class AdminController extends Controller
 {
