@@ -77,6 +77,8 @@ Route::group(['middleware' => ['auth:user'], 'prefix' => 'v1/user'], function ()
     Route::post('/add_review',[App\Http\Controllers\ReviewController::class, 'addReview']);
     //delete review
     Route::delete('/delete_review/{id}',[App\Http\Controllers\ReviewController::class, 'deleteReview']);
+    //update user record
+    Route::post('/edit_record/{id}',[App\Http\Controllers\Authcontroller::class, 'editDetails']);
     //logout
     Route::post('/logout',[App\Http\Controllers\Authcontroller::class, 'logout']);
 
@@ -100,6 +102,6 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'v1/admin'], function 
     //get all users
     Route::get('/get_all_users',[App\Http\Controllers\AdminController::class, 'getUser']);
     //logout
-    Route::get('/logout',[App\Http\Controllers\AdminController::class, 'logout']);
+    Route::post('/logout',[App\Http\Controllers\AdminController::class, 'logout']);
 
 });

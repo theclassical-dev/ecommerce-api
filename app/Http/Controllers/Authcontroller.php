@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Resources\LoginResource;
+use App\Http\Resources\UserResource;
 
 class Authcontroller extends Controller
 {
@@ -64,6 +65,22 @@ class Authcontroller extends Controller
         ];
 
         return response($response, 201);
+    }
+
+    public function editDetails(Request $request, $id){
+
+        $user = auth()->user()->find($id);
+
+        if($user){
+            $user->update($request->all());
+            // return UserResource::collection($user);
+            return response()->json([
+                'message' =>'Record updated successfully',
+                'data' =>$user
+            ], 200);
+        }
+
+        return response()->json(['message' =>'error updating details ...']);
     }
 
     public function logout(Request $request){
