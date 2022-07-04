@@ -92,7 +92,7 @@ class ProductController extends Controller
         //single image 'product avater'
 
         $img = $request->file('avater');
-        if($request->hasFile('image')){
+        if($request->hasFile('avater')){
             $file = rand(11111, 99999).'.'.$img->getClientOriginalExtension();
             $img->storeAs('productAvater',$file, 'public');
         }
@@ -118,7 +118,7 @@ class ProductController extends Controller
             'name'=> $request->input('name'),
             'price' => $request->input('price'),
             'discount' => $request->input('discount'),
-            'description' => $request->input('discription'),
+            'description' => $request->input('description'),
             'quantity' => $request->input('quantity'),
             'status' => $request->input('status'),
             'category' => $request->input('category'),
@@ -151,11 +151,49 @@ class ProductController extends Controller
 
     public function updateProduct(Request $request, $id){
 
+        $request->validate([
+            'id' => 'required',
+        ]);
+
         $product = Product::find($id);
+
+        $img = $request->file('avater');
+
+        if($request->hasFile('avater')){
+            $file =  rand(11111, 99999).'.'.$img->getClientOriginalExtension();
+            if($product){
+                Storage::delete('public/productAvater/'. $product->avater);
+            }
+
+            $img->storeAs('productAvater',$file, 'public');
+        }else{
+
+            $file = $product->avater;
+        }
 
         if($product){
 
+            $product->update([
+
+                'name'=> $request->get('name'),
+                'price' => $request->get('price'),
+                'discount' => $request->get('discount'),
+                'description' => $request->get('description'),
+                'quantity' => $request->get('quantity'),
+                'status' => $request->get('status'),
+                'category' => $request->get('category'),
+                'avater' => $file,
+
+            ]);
+
+            return response()->json([
+                'message' =>'Product Updated Successfully',
+                'data' => $product
+            ]);
+
         }
+
+        return response()->json(['error' =>'Product Updated Successfully']);
     }
 
     public function deleteProduct($id){

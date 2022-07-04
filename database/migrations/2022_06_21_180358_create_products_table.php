@@ -23,7 +23,7 @@ class CreateProductsTable extends Migration
             $table->string('status');
             $table->string('category');
             $table->string('avater');
-            $table->string('images');
+            $table->string('images')->nullable();
             $table->timestamps();
         });
     }
