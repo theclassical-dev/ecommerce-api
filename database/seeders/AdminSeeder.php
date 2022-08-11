@@ -16,7 +16,7 @@ class AdminSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('admin')->insert([
+        DB::table('admins')->insert([
             'uuid' => 'ADF1B3',
             'name' => 'admin',
             'email'=>'admin@gmail.com',
